@@ -1,12 +1,17 @@
 import express, { Express, Request, Response } from "express";
+import dotenv from "dotenv"
+import logger from "./utils/logger";
+import routes from "./routes";
 
+dotenv.config()
 const app: Express = express();
-const port: number = 7000;
 
 app.get("/", (req: Request, res: Response) => {
     res.send("hello world")
 });
 
+const port: string | undefined = process.env.PORT;
 app.listen(port, () => {
-    console.log(`listening on port ${port}`);
+    logger.info(`App is running at http://localhost:${port}`);
+    routes(app);
 })
