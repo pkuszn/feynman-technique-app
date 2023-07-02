@@ -87,3 +87,32 @@
         width: 40%;
     }
 }
+
+.navigation_component {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: #0A337F;
+    color:white;
+}
+
+.navigation__logo-text {
+    font-size: 50px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+.navigation__sites {
+    float: right;
+    text-align: center;
+    padding: 30px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 15px;
+}
