@@ -1,10 +1,15 @@
-import React from 'react';
+import React from "react";
 import "./style-pages.css";
+import LoginFrame from "../components/login/LoginFrame";
 
 const Login = () => {
   return (
-    <div>Login</div>
-  )
-}
+    <div className="login__page">
+      <form id="login__form">
+        <LoginFrame />
+      </form>
+    </div>
+  );
+};
 
-export default Login
+export default Login;

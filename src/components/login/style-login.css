@@ -1,0 +1,114 @@
+.login__component-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-width: 400px;
+    min-height: 300px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px 15px rgba(92, 101, 240, 0.315);
+}
+
+.login__component-subcomponent {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 60%;
+}
+
+#login__component-text {
+    align-self: ;
+    float: left;
+    width: 90%;
+    font-size: 25px;
+    font-weight: bold;
+    white-space:nowrap ;
+}
+
+#login_component-login {
+    background-color: #135fec;
+    border-radius: 3px;
+    height: 40px;
+    font-size: 15px;
+    border: #427ff0;
+    color: white;
+    width: 90%;
+
+}
+
+#login_component-login:hover {
+    background-color: #427ff0;
+    border-radius: 3px;
+    height: 40px;
+    font-size: 15px;
+    color: white;
+}
+
+input {
+    display: block;
+    box-sizing: border-box;
+    width: 90%;
+    outline: none;
+    height: 30px;
+    border-radius: 4px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 0 0 0 10px;
+    color: #8a8b8e;
+    border: 1px solid #c2c0ca;
+    font-style: normal;
+    font-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    display: inline-block;
+    background: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #0A337F;
+}
+
+input[type="text"]:focus:invalid,
+input[type="password"]:focus:invalid {
+    color: #cc1e2b;
+    border-color: #cc1e2b;
+}
+
+input[type="text"]:valid~.validation,
+input[type="password"]:valid~.validation {
+    display: block;
+    border-color: #0C0;
+}
+
+input[type="text"]:valid~.validation span,
+input[type="password"]:valid~.validation span {
+    background: #0C0;
+    position: absolute;
+    border-radius: 6px;
+}
+
+input[type="text"]:valid~.validation span:first-child,
+input[type="password"]:valid~.validation span:first-child {
+    top: 30px;
+    left: 14px;
+    width: 20px;
+    height: 3px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+input[type="text"]:valid~.validation span:last-child,
+input[type="password"]:valid~.validation span:last-child {
+    top: 35px;
+    left: 8px;
+    width: 11px;
+    height: 3px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

@@ -92,7 +92,8 @@
     display: flex;
     width: 100%;
     height: 100px;
-    background-color: #0A337F;
+    flex-direction: row;
+    background-color: #135fec;
     color:white;
 }
 
@@ -103,16 +104,22 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 5px;
+    width: 100%;
 }
 
-.navigation__sites {
-    float: right;
-    text-align: center;
+.navigation__menu {
     padding: 30px 16px;
-    text-decoration: none;
     display: flex;
-    align-items: center;
+    flex-direction: row;
     border-radius: 3px;
     font-weight: bold;
+    justify-content: end;
     font-size: 15px;
+    width: 100%
+}
+
+.navigation__menu-element {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
 }

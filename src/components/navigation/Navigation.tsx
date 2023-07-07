@@ -1,13 +1,13 @@
 import React from "react";
 import "./style-navigation.css"
 import Logo from "./Logo";
-import Sites from "./Sites";
+import Menu from "./Menu";
 
 const Navigation: React.FC = () => {
   return (
     <div className="navigation_component">
       <Logo></Logo>
-      <Sites></Sites>
+      <Menu></Menu>
     </div>
   );
 };
