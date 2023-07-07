@@ -1,7 +1,7 @@
 import React from 'react';
 import "./style-pages.css";
 
-const Learn = () => {
+const Learn: React.FC = () => {
   return (
     <div>Learn</div>
   )

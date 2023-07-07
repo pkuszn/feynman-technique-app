@@ -1,9 +1,12 @@
 import React from 'react'
 import "./style-pages.css";
+import CorpusTable from '../components/corpus/CorpusTable';
 
-const Corpus = () => {
+const Corpus: React.FC = () => {
   return (
-    <div>Corpus</div>
+    <div>
+      <CorpusTable/>
+    </div>
   )
 }
 

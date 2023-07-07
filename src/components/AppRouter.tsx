@@ -5,8 +5,9 @@ import About from "../pages/About";
 import Login from "../pages/Login";
 import Corpus from "../pages/Corpus";
 import Help from "../pages/Help";
+import React from "react";
 
-const AppRouter = () => {
+const AppRouter: React.FC = () => {
   return (
     <div className="playground">
     <BrowserRouter>

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./style-pages.css";
 
-const Help = () => {
+const Help: React.FC = () => {
   return (
     <div>Help</div>
   )
