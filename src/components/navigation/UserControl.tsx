@@ -19,7 +19,7 @@ const UserControl: React.FC = () => {
   return (
     <div className='navigation_user_control__component'>
       <p id='navigation_user_control__component-text'>{userName}</p>
-      <AiOutlineUser size={45} id='navigation_user_control__component-icon'/>
+      <AiOutlineUser size={40} id='navigation_user_control__component-icon'/>
     </div>
   )
 }

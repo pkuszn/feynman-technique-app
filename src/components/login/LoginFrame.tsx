@@ -26,12 +26,12 @@ const LoginFrame: React.FC = () => {
   return (
     <div className="login__component-frame">
       <p className="login__component-subcomponent" id="login__component-text">
-        Sign in to your account
+        Zaloguj się na konto
       </p>
       <input
         className="login__component-subcomponent"
         id="login__component-user"
-        placeholder="Your login"
+        placeholder="Twój login"
         type="text"
         value={username}
         onChange={({ target }) => {
@@ -41,7 +41,7 @@ const LoginFrame: React.FC = () => {
       <input
         className="login__component-subcomponent"
         id="login__component-password"
-        placeholder="Your password"
+        placeholder="Twoje hasło"
         type="password"
       />
       <button
@@ -49,7 +49,7 @@ const LoginFrame: React.FC = () => {
         id="login_component-login"
         onClick={saveDataHandler}
       >
-        Sign in
+        ZALOGUJ SIĘ
       </button>
     </div>
   );
