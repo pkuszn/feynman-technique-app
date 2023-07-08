@@ -1,10 +1,8 @@
-import React from 'react'
-import "./style-navigation.css"
+import React from "react";
+import "./style-navigation.css";
 
 const Logo: React.FC = () => {
-  return (
-    <div className='navigation__logo-text'>EXPLAIN LIKE I'M FIVE</div>
-  )
-}
+    return <div className="navigation__logo-text">EXPLAIN LIKE I'M FIVE</div>;
+};
 
-export default Logo
+export default Logo;

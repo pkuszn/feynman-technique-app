@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 import "./style-pages.css";
-import CorpusTable from '../components/corpus/CorpusTable';
+import CorpusView from "../components/corpus/CorpusView";
 
 const Corpus: React.FC = () => {
-  return (
-    <div>
-      <CorpusTable/>
-    </div>
-  )
-}
+    return (
+        <div>
+            <CorpusView />
+        </div>
+    );
+};
 
-export default Corpus
+export default Corpus;

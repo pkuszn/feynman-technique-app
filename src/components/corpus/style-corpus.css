@@ -1,4 +1,3 @@
-
 .corpus_table__component {
     width: 100%;
     margin: 0;
@@ -6,17 +5,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: base;
 }
 
-.corpus_table__component-text {}
+#corpus_table__component-text {
+    margin-bottom: 50px;
+    color: #575454;
+}
 
 .corpus_table__component-data {
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    width: 100%;
+    width: 90%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -31,13 +33,12 @@
     padding: 12px 15px;
 }
 
-
 .corpus_table__component-data tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
 .corpus_table__component-data tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: #d0dffb;
 }
 
 .corpus_table__component-data tbody tr:last-of-type {
@@ -50,13 +51,15 @@
 }
 
 .corpus_table__component_search {
+    width: 90%;
     display: flex;
     justify-content: center;
-    width: 100%;
-    margin-top: 50px;
+}
+
+#corpus_table__component_search-input {
+    width: 90%;
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    width: 100%;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;

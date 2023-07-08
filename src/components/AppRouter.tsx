@@ -8,21 +8,21 @@ import Help from "../pages/Help";
 import React from "react";
 
 const AppRouter: React.FC = () => {
-  return (
-    <div className="playground">
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/home" element={<Home/>} />
-        <Route path="/corpus" element={<Corpus/>} />
-        <Route path="/learn" element={<Learn/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/help" element={<Help/>} />
-        <Route path="/login" element={<Login/>} />
-      </Routes>
-    </BrowserRouter>
-    </div>
-  );
+    return (
+        <div className="playground">
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/corpus" element={<Corpus />} />
+                    <Route path="/learn" element={<Learn />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/help" element={<Help />} />
+                    <Route path="/login" element={<Login />} />
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 };
 
 export default AppRouter;
