@@ -1,13 +1,10 @@
-import config from "../../appsettings.json";
+import config from "../appsettings.json";
 import { BackendApi } from "../constants/api";
 import { Role } from "../models/Role";
 import { HttpUtils } from "../utils/HttpUtils";
 
 export class RoleService {
-    private static PROVIDER: string = HttpUtils.prepareProvider(
-        config.Api.Backend.Provider,
-        config.Api.Backend.Port
-    );
+    private static PROVIDER: string =  config.Api.Backend.Dev;
 
     public async getAllRolesAsync(): Promise<Role[]> {
         const endpoint: string = HttpUtils.getEndpoint(
@@ -15,7 +12,13 @@ export class RoleService {
             BackendApi.ROLE_ALL
         );
 
-        const res = await fetch(endpoint);
+        const res = await fetch(endpoint, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+        });
         const json = await res.json();
         return json as Role[];
     }
@@ -27,7 +30,13 @@ export class RoleService {
             id
         );
 
-        const res = await fetch(endpoint);
+        const res = await fetch(endpoint, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+        });
         const json = await res.json();
         return json as Role;
     }

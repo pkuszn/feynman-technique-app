@@ -1,12 +1,4 @@
 export class HttpUtils {
-    static prepareProvider(service: string, port: number): string {
-        if (service === "" || port <= 0) {
-            return "";
-        }
-
-        return service.concat(port.toString());
-    }
-
     static getEndpoint(provider: string, endpoint: string): string {
         if (provider === "" || endpoint === "") {
             return "";
@@ -24,7 +16,7 @@ export class HttpUtils {
             return "";
         }
 
-        return provider.concat(endpoint.concat(id.toString()));
+        return [provider, endpoint, id].join("/");
     }
 
     static getEndpointExpand(
@@ -36,6 +28,6 @@ export class HttpUtils {
             return "";
         }
 
-        return provider.concat(endpoint.concat(expand));
+        return [provider, endpoint, expand].join("/");
     }
 }

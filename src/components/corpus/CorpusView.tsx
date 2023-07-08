@@ -1,57 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style-corpus.css";
-import { AiOutlineSearch } from "react-icons/ai";
 import { Word } from "../../models/Word";
+import { WordService } from "../../services/WordService";
+import CorpusTable from "./CorpusTable";
 
-const CorpusTable: React.FC = () => {
-    const [words, setWords] = useState<Word[]>([]);
+interface IState {
+    loading: boolean;
+    words: Word[];
+    errorMessage: string;
+}
 
-    const [searchValue, setSearchValue] = useState<string>("");
+const CorpusView: React.FC = () => {
+    const [state, setState] = useState<IState>({
+        loading: false,
+        words: [] as Word[],
+        errorMessage: "",
+    });
 
-    const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(event.target.value);
-    };
+    useEffect(() => {
+        setState({ ...state, loading: true });
+        WordService.getAllWordsAsync()
+            .then((res: any) => {
+                setState({
+                    ...state,
+                    loading: false,
+                    words: res,
+                });
+            })
+            .catch((err: any) => {
+                setState({
+                    ...state,
+                    loading: false,
+                    errorMessage: err.message,
+                });
+            });
 
-    const data = {
-        nodes: words.filter((word) =>
-            word.name.toLowerCase().includes(searchValue.toLowerCase())
-        ),
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    return (
-        <div className="corpus_table__component">
-            <h3 id="corpus_table__component-text">Korpus językowy aplikacji</h3>
-            <input
-                id="corpus_table__component_search-input"
-                placeholder="Szukaj słów"
-                onChange={searchHandler}
-            ></input>
-            <table className="corpus_table__component-data">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>partOfSpeech</th>
-                        <th>createdDate</th>
-                        <th>context</th>
-                        <th>link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.nodes.map((node) => (
-                        <tr key={node.id}>
-                            <td>{node.id}</td>
-                            <td>{node.name}</td>
-                            <td>{node.partOfSpeech}</td>
-                            <td>{node.createdDate.toISOString()}</td>
-                            <td>{node.context}</td>
-                            <td>{node.link}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+    return <CorpusTable loading={state.loading} words={state.words} errorMessage={state.errorMessage} />;
 };
 
-export default CorpusTable;
+export default CorpusView;
