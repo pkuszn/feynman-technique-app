@@ -2,7 +2,7 @@ export interface Word {
     id: number;
     name: string;
     partOfSpeech: number;
-    createdDate: Date;
+    createdDate: string;
     context: string;
     link: string;
 }

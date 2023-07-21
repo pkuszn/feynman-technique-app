@@ -1,6 +1,6 @@
 import { HttpUtils } from "../utils/HttpUtils";
 import config from "../appsettings.json";
-import { BackendApi } from "../constants/api";
+import { BackendApi } from "../constants/Api";
 import { Word } from "../models/Word";
 export class WordService {
     private static PROVIDER: string = config.Api.Backend.Dev;
@@ -40,5 +40,22 @@ export class WordService {
         });
         const json = await res.json();
         return json as Word;
+    }
+
+    public static async deleteWordAsync(id: number): Promise<void> {
+        const endpoint: string = HttpUtils.getEndpointSpecific(
+            WordService.PROVIDER,
+            BackendApi.WORD,
+            id
+        );
+
+        await fetch(endpoint, {
+            method: "DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'https://localhost:7162'
+            }
+        });
     }
 }

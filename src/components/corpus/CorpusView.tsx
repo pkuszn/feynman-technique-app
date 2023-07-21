@@ -17,26 +17,26 @@ const CorpusView: React.FC = () => {
         errorMessage: "",
     });
 
-    useEffect(() => {
-        setState({ ...state, loading: true });
-        WordService.getAllWordsAsync()
-            .then((res: any) => {
-                setState({
-                    ...state,
-                    loading: false,
-                    words: res,
-                });
-            })
-            .catch((err: any) => {
-                setState({
-                    ...state,
-                    loading: false,
-                    errorMessage: err.message,
-                });
-            });
+    // useEffect(() => {
+    //     setState({ ...state, loading: true });
+    //     WordService.getAllWordsAsync()
+    //         .then((res: any) => {
+    //             setState({
+    //                 ...state,
+    //                 loading: false,
+    //                 words: res,
+    //             });
+    //         })
+    //         .catch((err: any) => {
+    //             setState({
+    //                 ...state,
+    //                 loading: false,
+    //                 errorMessage: err.message,
+    //             });
+    //         });
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     return <CorpusTable loading={state.loading} words={state.words} errorMessage={state.errorMessage} />;
 };

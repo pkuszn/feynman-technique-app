@@ -15,7 +15,6 @@
 
 .corpus_table__component-data {
     border-collapse: collapse;
-    margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
     width: 90%;
@@ -50,6 +49,24 @@
     color: #009879;
 }
 
+.corpus_table__component-data-table-action {
+    display: flex;
+    flex-direction: row;
+}
+
+.corpus_table__component-data-table-action-table-delete {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.corpus_table__component-data-table-action-table-update {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left:2px;
+}
+
 .corpus_table__component_search {
     width: 90%;
     display: flex;
@@ -57,11 +74,47 @@
 }
 
 #corpus_table__component_search-input {
-    width: 90%;
+    width: 100%;
     background-position: 10px 10px;
     background-repeat: no-repeat;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
+}
+
+.corpus_table__component-search-entries {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.corpus_table__component-search-entries-left {
+    justify-self: start;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+.corpus_table__component-search-entries-right {
+    align-self:self-end;
+}
+
+.corpus_table__component-pagination {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.corpus_table__component-pagination-left {
+    justify-self: start;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+.corpus_table__component-pagination-right {
+    align-self:self-end;
 }
