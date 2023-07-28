@@ -118,3 +118,65 @@
 .corpus_table__component-pagination-right {
     align-self:self-end;
 }
+
+.corpus_table__component-bottom-add-word-button{
+    display: flex;
+    flex-direction: column; /* To stack the items vertically */
+    align-items: flex-end; /* Align items to the bottom of the container */
+    height: 200px; /* Optional: Set a height for the container */
+}
+
+.corpus_table__component-bottom {
+    display: flex;
+    flex-direction: column;
+    max-height: 50px;
+    width: 90%;
+    height: 100px;
+}
+
+.corpus_table__component-add-button {
+    float: right;
+    margin-top: auto; /* Push the button to the bottom of the container */
+}
+
+
+.corpus_table__component-add-word {
+    transform: translate(-50%, -50%); 
+    width: 90%;
+}
+
+.corpus_table__component-add-word-form {
+    display: flex;
+    justify-content: center;
+}
+
+.corpus_table__component-add-word-input {
+    width: 100%;
+}
+
+.corpus_table__component-add-word-header {
+    text-align: end;
+}
+
+.corpus_table__component-inner {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: base;
+}
+
+/* Reuseable CSSs */
+
+.corpus_table__component-center {
+    outline: 1px solid red;
+    position: absolute;
+    top: 50%; /* Moves the top edge of the child element to the center of the parent */
+    left: 50%; /* Moves the left edge of the child element to the center of the parent */
+}
+
+.corpus_table__component-blur {
+    filter:blur(1.5rem);
+}
