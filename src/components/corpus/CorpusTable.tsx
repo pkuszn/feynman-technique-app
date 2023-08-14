@@ -4,126 +4,71 @@ import { Word } from "../../models/Word";
 import { Mapper } from "../../utils/Mapper";
 import { TailSpin } from "react-loader-spinner";
 import { WordService } from "../../services/WordService";
-import { debug } from "console";
 
-interface IState {
-    loading: boolean;
-    words: Word[];
-    errorMessage: string;
+interface ISessionState {
+    sessionEstablished: boolean
+    amountOfEntries: number
 }
 
-interface IDebugState {
-    debugWords: Word[];
+interface IContentState {
+    loading: boolean,
+    words: Word[],
+    errorMessage: string | null
 }
 
-const CorpusTable: React.FC<IState> = ({
-    loading,
-    words,
-    errorMessage,
-}: IState) => {
-    const debugData = {
-        node: [
-            {
-                id: 1,
-                name: "dupa",
-                partOfSpeech: 1,
-                createdDate: "2023-06-01 00:00:00",
-                context: "scraper",
-                link: "localhost",
-            },
-            {
-                id: 2,
-                name: "a",
-                partOfSpeech: 61,
-                createdDate: "2022-06-01 00:00:00",
-                context: "scraper",
-                link: "localhost",
-            },
-            {
-                id: 3,
-                name: "b",
-                partOfSpeech: 1,
-                createdDate: "1999-06-01 00:00:00",
-                context: "asd",
-                link: "x",
-            },
-            {
-                id: 4,
-                name: "c",
-                partOfSpeech: 5,
-                createdDate: "2023-06-01 00:00:00",
-                context: "scraper",
-                link: "localhost",
-            },
-            {
-                id: 5,
-                name: "d",
-                partOfSpeech: 1,
-                createdDate: "2023-06-01 00:00:00",
-                context: "scraper",
-                link: "localxxhost",
-            },
-            {
-                id: 6,
-                name: "e",
-                partOfSpeech: 1,
-                createdDate: "2023-06-01 00:00:00",
-                context: "scraper",
-                link: "localhost",
-            },
-            {
-                id: 7,
-                name: "f",
-                partOfSpeech: 11,
-                createdDate: "2223-06-01 00:00:00",
-                context: "ds",
-                link: "localhost",
-            },
-            {
-                id: 8,
-                name: "hg",
-                partOfSpeech: 1,
-                createdDate: "2023-06-01 00:00:00",
-                context: "scraper",
-                link: "localhost",
-            },
-        ],
-    };
-
+const CorpusTable: React.FC<ISessionState> = ({
+    sessionEstablished,
+    amountOfEntries
+}: ISessionState) => {
     const [searchValue, setSearchValue] = useState<string>("");
+    const [state, setWords] = useState<IContentState>({
+        loading: false,
+        words: [],
+        errorMessage: ""
+    });
+    const [page, setPage] = useState(1);
+    const [isEdit, setEdit] = useState(false);
+    const [isAdd, setAdd] = useState(false);
+
+    useEffect(() => {
+        if (sessionEstablished) {
+            setWords({ ...state, loading: true });
+            WordService.getWordWhereLimitAsync(null, 25, page)
+                .then((res: any) => {
+                    setWords({
+                        ...state,
+                        loading: false,
+                        words: res,
+                        errorMessage: null
+                    });
+                })
+                .catch((err: any) => {
+                    setWords({
+                        ...state,
+                        loading: false,
+                        words: [],
+                        errorMessage: err.message,
+                    });
+                });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.target.value);
     };
 
-    const [isEdit, setEdit] = useState(false);
-    const [debugWords, setWords] = useState<IDebugState>({ debugWords: [] });
-    const [isAdd, setAdd] = useState(false);
-
     const data = {
-        nodes: words.filter((word) =>
+        nodes: state.words.filter((word) =>
             word.name.toLowerCase().includes(searchValue.toLowerCase())
         ),
     };
-
-    useEffect(() => {
-        setWords({ debugWords: debugData.node });
-    });
 
     const deleteWordHandler = async (id: number) => {
         if (id === 0) {
             return;
         }
-        deleteDebugWordHandler(id);
-        // await WordService.deleteWordAsync(id);
-    };
-
-    const deleteDebugWordHandler = (id: number) => {
-        if (id === 0) {
-            return;
-        }
-
-        debugData.node = debugData.node.filter((f) => f.id !== id);
-        setWords({ debugWords: debugData.node });
+        await WordService.deleteWordAsync(id);
     };
 
     const addWordHandler = () => {
@@ -131,9 +76,11 @@ const CorpusTable: React.FC<IState> = ({
         alert("test");
     };
 
-    return (
-        <div className="corpus_table__component">
-            {isAdd ? (
+/*
+
+
+Dodanie słowa
+ {isAdd ? (
                 <div className="aa">
                     <p>fałsz</p>
                 </div>
@@ -150,7 +97,10 @@ const CorpusTable: React.FC<IState> = ({
                         <button>Wyślij</button>
                     </form>
                 </div>
-            )}
+*/
+
+    return (
+        <div className="corpus_table__component">
             <div className="corpus_table__component-inner">
                 <h3 id="corpus_table__component-text">
                     Korpus językowy aplikacji
@@ -178,7 +128,7 @@ const CorpusTable: React.FC<IState> = ({
                         ></input>
                     </div>
                 </div>
-                {loading ? (
+                {state.loading ? (
                     <div className="corpus_table__component-center">
                         <TailSpin
                             height="80"
@@ -207,7 +157,7 @@ const CorpusTable: React.FC<IState> = ({
                             </tr>
                         </thead>
                         <tbody>
-                            {debugWords.debugWords.map((node) => (
+                            {state.words.map((node) => (
                                 <tr key={node.id}>
                                     <td>{node.id}</td>
                                     <td>{node.name}</td>
@@ -242,9 +192,12 @@ const CorpusTable: React.FC<IState> = ({
                         </tbody>
                     </table>
                 )}
-                <div className="corpus_table__component-pagination corpus_table__component-blur">
+                <div className="corpus_table__component-pagination">
                     <div className="corpus_table__component-pagination-left">
-                        <p>Pokazano od </p>
+                        <div className="corpus_table__component-pagination-left-paragraphs">
+                            <p>Pokazano od </p>
+                            <p>Liczba słów {amountOfEntries}</p>
+                        </div>
                     </div>
                     <div className="corpus_table__component-right">
                         <p>Paginacja</p>

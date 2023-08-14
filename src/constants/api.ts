@@ -12,21 +12,25 @@ class BackendApi {
 
     public static PART_OF_SPEECH: string = "/PartOfSpeech";
     public static PART_OF_SPEECH_ALL: string = "/PartOfSpeech/all";
-    public static PART_OF_SPEECH_GET: string = "PartOfSpeech/get";
+    public static PART_OF_SPEECH_GET: string = "/PartOfSpeech/get";
+    public static PART_OF_SPEECH_COUNT: string = "/PartOfSpeech/count";
 
     public static ROLE: string = "/Role";
     public static ROLE_GET: string = "/Role/get";
     public static ROLE_ALL: string = "/Role/all";
+    public static ROLE_COUNT: string = "/Role/count";
 
     public static USER: string = "/User";
     public static USER_ALL: string = "/User/all";
     public static USER_GET: string = "/User/get";
     public static USER_BULK: string = "/User/bulk";
+    public static USER_COUNT: string = "/User/count";
 
     public static WORD: string = "/Word";
     public static WORD_ALL: string = "/Word/all";
     public static WORD_GET: string = "/Word/get";
     public static WORD_BULK: string = "/Word/bulk";
+    public static WORD_COUNT: string = "/Word/count";
 }
 
 class CoreApi {

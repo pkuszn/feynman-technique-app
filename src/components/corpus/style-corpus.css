@@ -171,7 +171,6 @@
 /* Reuseable CSSs */
 
 .corpus_table__component-center {
-    outline: 1px solid red;
     position: absolute;
     top: 50%; /* Moves the top edge of the child element to the center of the parent */
     left: 50%; /* Moves the left edge of the child element to the center of the parent */

@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./style-corpus.css";
-import { Word } from "../../models/Word";
-import { WordService } from "../../services/WordService";
 import CorpusTable from "./CorpusTable";
-
-interface IState {
-    loading: boolean;
-    words: Word[];
-    errorMessage: string;
-}
+import { WordService } from "../../services/WordService";
 
 const CorpusView: React.FC = () => {
-    const [state, setState] = useState<IState>({
-        loading: false,
-        words: [] as Word[],
-        errorMessage: "",
-    });
+
+    const [isSessionActive, setSessionActive] = useState<boolean>(false);
+    const [length, setLength] = useState<number>(0);
 
     const sessionHandler = () => {
         const user: string | null = sessionStorage.getItem("name");
@@ -24,37 +15,20 @@ const CorpusView: React.FC = () => {
         }
     }
 
-    const [isSessionActive, setSessionActive] = useState<boolean>(false);
+    const amountOfEntriesHandler = async () => {
+        let length: number = await WordService.getAmountOfEntriesAsync();
+        setLength(length);
+    }
+
     useEffect(() => {
         sessionHandler();
-        if (isSessionActive) {
-            setState({ ...state, loading: true });
-            WordService.getAllWordsAsync()
-                .then((res: any) => {
-                    setState({
-                        ...state,
-                        loading: false,
-                        words: res,
-                    });
-                })
-                .catch((err: any) => {
-                    setState({
-                        ...state,
-                        loading: false,
-                        errorMessage: err.message,
-                    });
-                });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        amountOfEntriesHandler();
+    })
 
     return (
-        isSessionActive ?
-        <CorpusTable
-            loading={state.loading}
-            words={state.words}
-            errorMessage={state.errorMessage}
-        /> : ""
+        isSessionActive 
+            ? <CorpusTable sessionEstablished={isSessionActive} amountOfEntries={length}/> 
+            : <div><p>Sesja nie została ustanowiona!</p></div>
     );
 };
 
