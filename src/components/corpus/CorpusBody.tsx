@@ -15,8 +15,9 @@ const CorpusBody: React.FC<ISessionState> = ({
     const [searchValue, setSearchValue] = useState<string>("");
     const [showNumberOfEntries, setShowNumberOfEntries] = useState<number>(5);
     const [currentPage, setCurrentPage] = useState(1);
-    const [page, setPage] = useState(1);
+    const [pageRange, setPageRange] = useState(`1-${showNumberOfEntries}`)
     const [isAdd, setAdd] = useState(false);
+    const totalPages = Math.ceil(amountOfEntries / showNumberOfEntries);
 
     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.target.value);
@@ -27,12 +28,19 @@ const CorpusBody: React.FC<ISessionState> = ({
     }
 
     const handlePageChange = (selectedPage: number) => {
+        setPageRange(determineScope(selectedPage, showNumberOfEntries));
         setCurrentPage(selectedPage);
       };
 
     const addWordHandler = () => {
         setAdd(true);
     };
+
+    const determineScope = (currentPage: number, showNumberOfEntries: number) => {
+        let startRange = showNumberOfEntries * currentPage;
+        let endRange = (showNumberOfEntries * currentPage) + showNumberOfEntries;
+        return `${startRange}-${endRange}`;
+    } 
 
     return (
         <div className="corpus_table__component">
@@ -66,18 +74,18 @@ const CorpusBody: React.FC<ISessionState> = ({
                 <CorpusTable
                     sessionEstablished={sessionEstablished}
                     showNumberOfEntries={showNumberOfEntries}
-                    currentPage={page}
+                    currentPage={currentPage}
                     searchValue={searchValue}/>
                 <div className="corpus_table__component-pagination">
                     <div className="corpus_table__component-pagination-left">
                         <div className="corpus_table__component-pagination-left-paragraphs">
-                            <p>Pokazano od </p>
+                            <p>Pokazano od: <b>{pageRange}</b> </p>
                             <p>Liczba słów: <b>{amountOfEntries}</b></p>
                         </div>
                     </div>
                     <div className="corpus_table__component-right">
                         <div className="corpus_table__component_pagination-container">
-                        <CorpusPaginationPanel totalItems={amountOfEntries} itemsPerPage={showNumberOfEntries} onPageChange={handlePageChange} />
+                        <CorpusPaginationPanel totalPages={totalPages} onPageChange={handlePageChange} />
                         </div>
                     </div>
                 </div>
