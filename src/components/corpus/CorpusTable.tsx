@@ -5,8 +5,7 @@ import { Mapper } from "../../utils/Mapper";
 
 interface ISessionState {
     sessionEstablished: boolean
-    amountOfEntries: number,
-    showAmountOfEntries: number,
+    showNumberOfEntries: number,
     currentPage: number,
     searchValue: string
 }
@@ -18,8 +17,7 @@ interface IContentState {
 
 const CorpusTable: React.FC<ISessionState> = ({
     sessionEstablished,
-    amountOfEntries,
-    showAmountOfEntries,
+    showNumberOfEntries,
     currentPage,
     searchValue
 }: ISessionState) => {
@@ -33,7 +31,7 @@ const CorpusTable: React.FC<ISessionState> = ({
     useEffect(() => {
         if (sessionEstablished) {
             setWords({ ...state, loading: true });
-            WordService.getWordWhereLimitAsync(searchValue, showAmountOfEntries, currentPage)
+            WordService.getWordWhereLimitAsync(searchValue, showNumberOfEntries, currentPage)
                 .then((res: any) => {
                     setWords({
                         ...state,
@@ -52,7 +50,7 @@ const CorpusTable: React.FC<ISessionState> = ({
                 });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [searchValue, showNumberOfEntries, currentPage]);
 
     const deleteWordHandler = async (id: number) => {
         if (id === 0) {

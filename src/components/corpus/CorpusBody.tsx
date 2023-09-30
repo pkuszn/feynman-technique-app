@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./style-corpus.css";
 import CorpusTable from "./CorpusTable";
 
@@ -59,8 +59,7 @@ const CorpusBody: React.FC<ISessionState> = ({
                 </div>
                 <CorpusTable
                     sessionEstablished={sessionEstablished}
-                    amountOfEntries={amountOfEntries}
-                    showAmountOfEntries={showNumberOfEntries}
+                    showNumberOfEntries={showNumberOfEntries}
                     currentPage={page}
                     searchValue={searchValue}/>
                 <div className="corpus_table__component-pagination">
