@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./style-corpus.css";
 import CorpusTable from "./CorpusTable";
+import CorpusPaginationPanel from "./CorpusPaginationPanel";
 
 interface ISessionState {
     sessionEstablished: boolean
@@ -13,6 +14,7 @@ const CorpusBody: React.FC<ISessionState> = ({
 }: ISessionState) => {
     const [searchValue, setSearchValue] = useState<string>("");
     const [showNumberOfEntries, setShowNumberOfEntries] = useState<number>(5);
+    const [currentPage, setCurrentPage] = useState(1);
     const [page, setPage] = useState(1);
     const [isAdd, setAdd] = useState(false);
 
@@ -23,6 +25,10 @@ const CorpusBody: React.FC<ISessionState> = ({
     const showAmountOfEntriesHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setShowNumberOfEntries(Number(event.target.value));
     }
+
+    const handlePageChange = (selectedPage: number) => {
+        setCurrentPage(selectedPage);
+      };
 
     const addWordHandler = () => {
         setAdd(true);
@@ -70,7 +76,9 @@ const CorpusBody: React.FC<ISessionState> = ({
                         </div>
                     </div>
                     <div className="corpus_table__component-right">
-                        <p>Paginacja</p>
+                        <div className="corpus_table__component_pagination-container">
+                        <CorpusPaginationPanel totalItems={amountOfEntries} itemsPerPage={showNumberOfEntries} onPageChange={handlePageChange} />
+                        </div>
                     </div>
                 </div>
 
