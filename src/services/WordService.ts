@@ -20,11 +20,7 @@ export class WordService {
 
         const res = await fetch(endpoint, {
             method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://localhost:7162'
-            }
+            headers: config.HeaderBackend
         });
         const json = await res.json();
         return json as Word[];
@@ -39,11 +35,7 @@ export class WordService {
 
         const res = await fetch(endpoint, {
             method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://localhost:7162'
-            }
+            headers: config.HeaderBackend
         });
         const json = await res.json();
         return json as Word;
@@ -58,15 +50,11 @@ export class WordService {
 
         await fetch(endpoint, {
             method: "DELETE",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://localhost:7162'
-            }
+            headers: config.HeaderBackend
         });
     }
 
-    public static async getWordWhereLimitAsync(search: string | null, offset: number | null, partOfSet: number | null): Promise<Word[]> {
+    public static async getWordWhereLimitAsync(search: string, offset: number | null, partOfSet: number | null): Promise<Word[]> {
         const endpoint: string = HttpUtils.getEndpoint(
             WordService.PROVIDER,
             BackendApi.WORD_GET
@@ -76,11 +64,7 @@ export class WordService {
 
         const res = await fetch(endpoint, {
             method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://localhost:7162'
-            },
+            headers: config.HeaderBackend,
             body: bodyRequest
         })
 
@@ -96,25 +80,21 @@ export class WordService {
 
         const res = await fetch(endpoint, {
             method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://localhost:7162'
-            }
+            headers: config.HeaderBackend
         });
 
         const json = await res.json();
         return json as number;
     }
 
-    public static prepareBody(search: string | null, offset: number | null, partOfSet: number | null): BodyInit | undefined {
+    public static prepareBody(search: string, offset: number | null, partOfSet: number | null): BodyInit | undefined {
         var json : BodyRequest = {
             name: [],
             offset,
             partOfSet
         };
         
-        if (search !== null) {
+        if (search !== "") {
             json.name.push(search);
         }
 

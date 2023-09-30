@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style-corpus.css";
-import CorpusTable from "./CorpusTable";
+import CorpusBody from "./CorpusBody";
 import { WordService } from "../../services/WordService";
 
 const CorpusView: React.FC = () => {
@@ -27,7 +27,7 @@ const CorpusView: React.FC = () => {
 
     return (
         isSessionActive 
-            ? <CorpusTable sessionEstablished={isSessionActive} amountOfEntries={length}/> 
+            ? <CorpusBody sessionEstablished={isSessionActive} amountOfEntries={length}/> 
             : <div><p>Sesja nie została ustanowiona!</p></div>
     );
 };
