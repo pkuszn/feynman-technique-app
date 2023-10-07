@@ -16,18 +16,24 @@ export class HttpUtils {
             return "";
         }
 
-        return [provider, endpoint, id].join("/");
+        return prepareRoute(endpoint, id, provider);
     }
 
-    static getEndpointExpand(
+    static getEndpointCommand(
         provider: string,
         endpoint: string,
-        expand: string
+        command: string
     ): string {
-        if (provider === "" || endpoint === "" || expand === "") {
+        if (provider === "" || endpoint === "" || command === "") {
             return "";
         }
 
-        return [provider, endpoint, expand].join("/");
+        return prepareRoute(endpoint, command, provider);
     }
 }
+
+function prepareRoute(endpoint: string, command: any, provider: string) {
+    endpoint = [endpoint, command].join('/');
+    return provider.concat(endpoint)
+}
+

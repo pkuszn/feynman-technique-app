@@ -22,12 +22,13 @@ const CorpusTable: React.FC<ISessionState> = ({
     searchValue
 }: ISessionState) => {
 
+    const [deleteWord, setDeleteWord] = useState<number>();
     const [state, setWords] = useState<IContentState>({
         loading: false,
         words: [],
         errorMessage: ""
     });
-    
+
     useEffect(() => {
         if (sessionEstablished) {
             setWords({ ...state, loading: true });
@@ -50,13 +51,14 @@ const CorpusTable: React.FC<ISessionState> = ({
                 });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchValue, showNumberOfEntries, currentPage]);
+    }, [searchValue, showNumberOfEntries, currentPage, deleteWord]);
 
     const deleteWordHandler = async (id: number) => {
         if (id === 0) {
             return;
         }
         await WordService.deleteWordAsync(id);
+        setDeleteWord(id);
     };
 
     return (

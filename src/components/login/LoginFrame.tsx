@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style-login.css";
 
 const LoginFrame: React.FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isSaved, setIsSaved] = useState<Boolean>(false);
     const [username, setUsername] = useState<string>("");
+    const navigate = useNavigate();
 
     //TODO: Navigate to /home after successfull login
 
@@ -15,6 +17,7 @@ const LoginFrame: React.FC = () => {
             setIsSaved(false);
         }, 2000);
         getDataHandler();
+        navigate('/home')
     };
 
     //TODO: For debug purpose only!

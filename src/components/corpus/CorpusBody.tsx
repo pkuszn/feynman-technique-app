@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./style-corpus.css";
 import CorpusTable from "./CorpusTable";
 import CorpusPaginationPanel from "./CorpusPaginationPanel";
+import { SlPlus } from "react-icons/sl";
+
 
 interface ISessionState {
     sessionEstablished: boolean
@@ -37,8 +39,8 @@ const CorpusBody: React.FC<ISessionState> = ({
     };
 
     const determineScope = (currentPage: number, showNumberOfEntries: number) => {
-        let startRange = showNumberOfEntries * currentPage;
-        let endRange = (showNumberOfEntries * currentPage) + showNumberOfEntries;
+        let startRange = currentPage === 1 ? 0 : showNumberOfEntries * (currentPage - 1);
+        let endRange = showNumberOfEntries * currentPage;
         return `${startRange}-${endRange}`;
     } 
 
@@ -48,8 +50,8 @@ const CorpusBody: React.FC<ISessionState> = ({
                 <h3 id="corpus_table__component-text">
                     Korpus językowy aplikacji
                 </h3>
-                <div className="corpus_table__component-search-entries ">
-                    <span className="corpus_table__component-search-entries-left ">
+                <div className="corpus_table__component-search-entries">
+                    <span className="corpus_table__component-search-entries-left">
                         <label>
                             Pokaż{" "}
                             <select onChange={(e) => showAmountOfEntriesHandler(e)}>
@@ -63,7 +65,8 @@ const CorpusBody: React.FC<ISessionState> = ({
                             słów
                         </label>
                     </span>
-                    <div className="corpus_table__component-search-entries-right ">
+                    <div className="corpus_table__component-search-entries-right">
+
                         <input
                             id="corpus_table__component_search-input"
                             placeholder="Szukaj słów"
@@ -86,17 +89,11 @@ const CorpusBody: React.FC<ISessionState> = ({
                     <div className="corpus_table__component-right">
                         <div className="corpus_table__component_pagination-container">
                         <CorpusPaginationPanel totalPages={totalPages} onPageChange={handlePageChange} />
+                        <div id="corpus_table__component_search-add-word-button">
+                            <SlPlus size={30}
+                            color="#172b4d"/>
                         </div>
-                    </div>
-                </div>
-
-                <div className="corpus_table__component-bottom">
-                    <div className="corpus_table__component-bottom-add-word-button">
-                        <button
-                            onClick={() => addWordHandler()}
-                            className="corpus_table__component-add-button">
-                            Dodaj słowo
-                        </button>
+                        </div>
                     </div>
                 </div>
             </div>

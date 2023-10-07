@@ -83,6 +83,13 @@
     margin-bottom: 12px;
 }
 
+#corpus_table__component_search-add-word-button {
+    margin-top:10px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    float: right;
+}
+
 .corpus_table__component-search-entries {
     width: 90%;
     display: flex;
@@ -99,6 +106,8 @@
 
 .corpus_table__component-search-entries-right {
     align-self:self-end;
+    column-gap: 10px;
+    display: flex;
 }
 
 .corpus_table__component-pagination {

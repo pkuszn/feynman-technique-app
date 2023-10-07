@@ -4,9 +4,9 @@ import { BackendApi } from "../constants/Api";
 import { Word } from "../models/Word";
 
 type BodyRequest = {
-    name: string[],
-    offset: number | null,
-    partOfSet: number | null
+    name: string[];
+    offset: number | null;
+    partOfSet: number | null;
 };
 
 export class WordService {
@@ -17,13 +17,20 @@ export class WordService {
             WordService.PROVIDER,
             BackendApi.WORD_ALL
         );
-
-        const res = await fetch(endpoint, {
-            method: "GET",
-            headers: config.HeaderBackend
-        });
-        const json = await res.json();
-        return json as Word[];
+        try {
+            const res = await fetch(endpoint, {
+                method: "GET",
+                headers: config.HeaderBackend,
+            });
+            if (res.status === 200) return (await res.json()) as Word[];
+            if (res.status === 400) {
+                console.log(res);
+                return [] as Word[];
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        return [] as Word[];
     }
 
     public static async getWordAsync(id: number): Promise<Word> {
@@ -33,12 +40,20 @@ export class WordService {
             id
         );
 
-        const res = await fetch(endpoint, {
-            method: "GET",
-            headers: config.HeaderBackend
-        });
-        const json = await res.json();
-        return json as Word;
+        try {
+            const res = await fetch(endpoint, {
+                method: "GET",
+                headers: config.HeaderBackend,
+            });
+            if (res.status === 200) return (await res.json()) as Word;
+            if (res.status === 404) {
+                console.log(res);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+
+        return {} as Word;
     }
 
     public static async deleteWordAsync(id: number): Promise<void> {
@@ -47,29 +62,46 @@ export class WordService {
             BackendApi.WORD,
             id
         );
-
-        await fetch(endpoint, {
-            method: "DELETE",
-            headers: config.HeaderBackend
-        });
+        try {
+            const res = await fetch(endpoint, {
+                method: "DELETE",
+                headers: config.HeaderBackend,
+            });
+            if (res.status === 200) return;
+            if (res.status === 404) {
+                console.log(res);
+                return;
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    public static async getWordWhereLimitAsync(search: string, offset: number | null, partOfSet: number | null): Promise<Word[]> {
+    public static async getWordWhereLimitAsync(
+        search: string,
+        offset: number | null,
+        partOfSet: number | null
+    ): Promise<Word[]> {
         const endpoint: string = HttpUtils.getEndpoint(
             WordService.PROVIDER,
             BackendApi.WORD_GET
         );
+        try {
+            const res = await fetch(endpoint, {
+                method: "POST",
+                headers: config.HeaderBackend,
+                body: this.prepareGetWordWhereLimitBody(search, offset, partOfSet),
+            });
 
-        const bodyRequest = this.prepareBody(search, offset, partOfSet);
-
-        const res = await fetch(endpoint, {
-            method: "POST",
-            headers: config.HeaderBackend,
-            body: bodyRequest
-        })
-
-        const json = await res.json();
-        return json as Word[];
+            if (res.status === 200) return (await res.json()) as Word[];
+            if (res.status === 404) {
+                console.log(res);
+                return [] as Word[];
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        return [] as Word[];
     }
 
     public static async getAmountOfEntriesAsync(): Promise<number> {
@@ -78,22 +110,60 @@ export class WordService {
             BackendApi.WORD_COUNT
         );
 
-        const res = await fetch(endpoint, {
-            method: "GET",
-            headers: config.HeaderBackend
-        });
+        try {
+            const res = await fetch(endpoint, {
+                method: "GET",
+                headers: config.HeaderBackend,
+            });
 
-        const json = await res.json();
-        return json as number;
+            if (res.status === 200) return await res.json() as number;
+            if (res.status === 404) {
+                console.log(res);
+                return 0;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        return 0;
     }
 
-    public static prepareBody(search: string, offset: number | null, partOfSet: number | null): BodyInit | undefined {
-        var json : BodyRequest = {
+    public static async insertWordAsync(words: string[]): Promise<void> {
+        const endpoint = HttpUtils.getEndpoint(
+            WordService.PROVIDER,
+            BackendApi.WORD
+        );
+
+        try {
+            const res = await fetch(endpoint, {
+                method: "POST",
+                headers: config.HeaderBackend,
+                body: this.prepareInsertWordBody(words)
+            });
+            console.log(res);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    private static prepareInsertWordBody(words: string[]): BodyInit | undefined {
+        if (words === undefined || words.length === 0) {
+            return undefined;
+        }
+
+        return JSON.stringify(words);
+    }
+
+    private static prepareGetWordWhereLimitBody(
+        search: string,
+        offset: number | null,
+        partOfSet: number | null
+    ): BodyInit | undefined {
+        var json: BodyRequest = {
             name: [],
             offset,
-            partOfSet
+            partOfSet,
         };
-        
+
         if (search !== "") {
             json.name.push(search);
         }
