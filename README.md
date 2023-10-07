@@ -1,3 +1,7 @@
+# Description
+
+A web application which is written in TypeScript and React. The main purpose of the application is to interact with the user. Chatbot acts as a five years old person. Under beneath of service, there is a light-weight transformer-based toolkit for multilingual natural language processing. Application supports Feynman technique that is used to enhance our learning. A user collects his knowledge about any subject then is trying to explain a concept as simple as possible, like we are talking and explaining things to five older children. After sending an input, chatbot responds with output in the form of questions. Our task is to explain the doubts consisted in questions.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
