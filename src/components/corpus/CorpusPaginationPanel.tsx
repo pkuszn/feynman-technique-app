@@ -66,7 +66,7 @@ const CorpusPaginationPanel: React.FC<IPaginationProps> = ({ totalPages, onPageC
         const pageNumbers = [];
         const maxPagesToShow = 5;
         let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
-        let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+        let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1) - 1;
     
         if (totalPages <= maxPagesToShow) {
           startPage = 1;

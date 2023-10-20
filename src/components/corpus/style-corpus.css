@@ -10,7 +10,7 @@
 
 #corpus_table__component-text {
     margin-bottom: 50px;
-    color: #575454;
+    color: #172b4d;
 }
 
 .corpus_table__component-data {
@@ -187,4 +187,105 @@
 
 .corpus_table__component-blur {
     filter:blur(1.5rem);
+}
+
+.blurred {
+    filter: blur(5px); /* Set the amount of blur you desire */
+}
+
+.corpus_window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; 
+};
+
+.corpus_window__content {
+    /* Add styles for the window content */
+    background: #fff;
+}
+
+.corpus_window__content_form{
+    display:flex;
+    min-height: 115px;
+    flex-direction: column;
+    background-color: white;
+}
+
+.corpus_window__content_form_header{
+    width: 100%;
+    background-color: #172b4d;
+    color: white;
+}
+
+#corpus_window__content_form_submit{
+    align-self: end;
+    margin-left:2px;
+    margin-right: 2px;
+}
+
+#corpus_window__content_form_return{
+    align-self: start;
+    margin-left:2px;
+    margin-right: 2px;
+}
+
+.corpus_window__content_form_buttons{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-self: self-end;
+}
+
+.content_window__content_form_inputs{
+    margin-top:20px;
+    margin-left:2px;
+    margin-right: 2px;
+}
+
+.corpus_window__content_form_actions{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#corpus_window__content_form_input{
+    width: 100%;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+/* CSS */
+.button-10 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+
+  color: #fff;
+  background: #172b4d;
+   background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-10:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
 }

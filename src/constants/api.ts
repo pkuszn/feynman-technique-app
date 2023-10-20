@@ -1,6 +1,8 @@
 class BackendApi {
     public static LINGUISTIC_CORPUS_FILLMENT: string =
         "/LinguisticCorpusFillment";
+    public static LINGUISTIC_CORPUS_FILLMENT_MANUAL: string = 
+        "/LinguisticCorpusFillment/manual";
 
     public static SERVICE_UTILITIES: string = "/ServiceUtilities";
     public static SERVICE_UTILITIES_DUPLICATES: string =

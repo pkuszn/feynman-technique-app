@@ -3,6 +3,7 @@ import "./style-corpus.css";
 import CorpusTable from "./CorpusTable";
 import CorpusPaginationPanel from "./CorpusPaginationPanel";
 import { SlPlus } from "react-icons/sl";
+import CorpusForm from "./CorpusForm";
 
 
 interface ISessionState {
@@ -18,7 +19,7 @@ const CorpusBody: React.FC<ISessionState> = ({
     const [showNumberOfEntries, setShowNumberOfEntries] = useState<number>(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageRange, setPageRange] = useState(`1-${showNumberOfEntries}`)
-    const [isAdd, setAdd] = useState(false);
+    const [isFormOpen, setFormOpen] = useState(false);
     const totalPages = Math.ceil(amountOfEntries / showNumberOfEntries);
 
     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,19 +35,21 @@ const CorpusBody: React.FC<ISessionState> = ({
         setCurrentPage(selectedPage);
       };
 
-    const addWordHandler = () => {
-        setAdd(true);
-    };
-
+      //TODO: Fix!
     const determineScope = (currentPage: number, showNumberOfEntries: number) => {
-        let startRange = currentPage === 1 ? 0 : showNumberOfEntries * (currentPage - 1);
-        let endRange = showNumberOfEntries * currentPage;
+        let startRange = currentPage <= 1 ? 1 : showNumberOfEntries * (currentPage - 1);
+        let endRange = currentPage <= 0 ? showNumberOfEntries : showNumberOfEntries * currentPage;
         return `${startRange}-${endRange}`;
     } 
 
+    const showAddNewEntryWindow = () => {
+        setFormOpen(!isFormOpen);
+    }
+    
     return (
-        <div className="corpus_table__component">
-            <div className="corpus_table__component-inner">
+        <div className={`corpus_table__component`}>
+            <CorpusForm isWindowOpen={isFormOpen} setFormOpen={setFormOpen}/>
+            <div className={`corpus_table__component-inner ${isFormOpen ? 'blurred' : ''}`}>
                 <h3 id="corpus_table__component-text">
                     Korpus językowy aplikacji
                 </h3>
@@ -66,7 +69,6 @@ const CorpusBody: React.FC<ISessionState> = ({
                         </label>
                     </span>
                     <div className="corpus_table__component-search-entries-right">
-
                         <input
                             id="corpus_table__component_search-input"
                             placeholder="Szukaj słów"
@@ -90,7 +92,7 @@ const CorpusBody: React.FC<ISessionState> = ({
                         <div className="corpus_table__component_pagination-container">
                         <CorpusPaginationPanel totalPages={totalPages} onPageChange={handlePageChange} />
                         <div id="corpus_table__component_search-add-word-button">
-                            <SlPlus size={30}
+                            <SlPlus size={30} onClick={showAddNewEntryWindow}
                             color="#172b4d"/>
                         </div>
                         </div>

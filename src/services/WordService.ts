@@ -130,7 +130,7 @@ export class WordService {
     public static async insertWordAsync(words: string[]): Promise<void> {
         const endpoint = HttpUtils.getEndpoint(
             WordService.PROVIDER,
-            BackendApi.WORD
+            BackendApi.LINGUISTIC_CORPUS_FILLMENT_MANUAL
         );
 
         try {
@@ -139,7 +139,13 @@ export class WordService {
                 headers: config.HeaderBackend,
                 body: this.prepareInsertWordBody(words)
             });
-            console.log(res);
+
+            if (res.status === 201) {
+                console.log("success");
+            }
+            if (res.status === 404 || res.status === 400) {
+                console.log(res);
+            }
         } catch (error) {
             console.error(error);
         }
