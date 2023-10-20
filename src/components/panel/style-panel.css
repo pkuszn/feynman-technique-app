@@ -1,0 +1,48 @@
+/* The side navigation menu */
+.panel_navigation {
+    float: left;
+    width: 150px;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #5C6A82;
+}
+
+.panel_navigation a {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #172b4d;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .panel_navigation a:hover {
+    color: #5C6A82;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .panel_navigation {padding-top: 15px;}
+    .panel_navigation a {font-size: 18px;}
+  }
+.panel_navigation ul {
+    list-style-type: none;
+    padding: 0;
+    text-decoration: none;
+}
+
+.panel_navigation ul li {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.panel_navigation ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+.panel_navigation__component_exit{
+    display:flex;
+    justify-content: end;
+}
