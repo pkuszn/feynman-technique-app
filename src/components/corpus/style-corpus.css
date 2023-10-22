@@ -64,7 +64,7 @@
     color: black;
     text-decoration: none;
     font-weight: bold;
-    margin-left:2px;
+    margin-left: 2px;
 }
 
 .corpus_table__component_search {
@@ -84,7 +84,7 @@
 }
 
 #corpus_table__component_search-add-word-button {
-    margin-top:10px;
+    margin-top: 10px;
     background-position: 10px 10px;
     background-repeat: no-repeat;
     float: right;
@@ -105,7 +105,7 @@
 }
 
 .corpus_table__component-search-entries-right {
-    align-self:self-end;
+    align-self: self-end;
     column-gap: 10px;
     display: flex;
 }
@@ -125,14 +125,17 @@
 }
 
 .corpus_table__component-pagination-right {
-    align-self:self-end;
+    align-self: self-end;
 }
 
-.corpus_table__component-bottom-add-word-button{
+.corpus_table__component-bottom-add-word-button {
     display: flex;
-    flex-direction: column; /* To stack the items vertically */
-    align-items: flex-end; /* Align items to the bottom of the container */
-    height: 200px; /* Optional: Set a height for the container */
+    flex-direction: column;
+    /* To stack the items vertically */
+    align-items: flex-end;
+    /* Align items to the bottom of the container */
+    height: 200px;
+    /* Optional: Set a height for the container */
 }
 
 .corpus_table__component-bottom {
@@ -145,12 +148,13 @@
 
 .corpus_table__component-add-button {
     float: right;
-    margin-top: auto; /* Push the button to the bottom of the container */
+    margin-top: auto;
+    /* Push the button to the bottom of the container */
 }
 
 
 .corpus_table__component-add-word {
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
     width: 90%;
 }
 
@@ -181,16 +185,19 @@
 
 .corpus_table__component-center {
     position: absolute;
-    top: 50%; /* Moves the top edge of the child element to the center of the parent */
-    left: 50%; /* Moves the left edge of the child element to the center of the parent */
+    top: 50%;
+    /* Moves the top edge of the child element to the center of the parent */
+    left: 50%;
+    /* Moves the left edge of the child element to the center of the parent */
 }
 
 .corpus_table__component-blur {
-    filter:blur(1.5rem);
+    filter: blur(1.5rem);
 }
 
 .blurred {
-    filter: blur(5px); /* Set the amount of blur you desire */
+    filter: blur(5px);
+    /* Set the amount of blur you desire */
 }
 
 .corpus_window {
@@ -202,90 +209,97 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 999; 
-};
-
-.corpus_window__content {
-    /* Add styles for the window content */
-    background: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    z-index: 999;
 }
 
-.corpus_window__content_form{
-    display:flex;
-    min-height: 115px;
+
+.corpus_window__content_form {
+    display: flex;
     flex-direction: column;
     background-color: white;
+    justify-content: center;
+    border-radius: 6px;
+    min-height: 150px;
 }
 
-.corpus_window__content_form_header{
-    width: 100%;
-    background-color: #172b4d;
+.corpus_window_content_form_content {
+    background-color: #135fec;
+    display: flex;
+    justify-content: space-between;
+}
+
+.corpus_window__content_form_header {
+    text-align: center;
     color: white;
-}
-
-#corpus_window__content_form_submit{
-    align-self: end;
-    margin-left:2px;
+    margin-left: 2px;
+    font-weight: bold;
+    justify-self: center;
     margin-right: 2px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
 }
 
-#corpus_window__content_form_return{
-    align-self: start;
-    margin-left:2px;
+#corpus_window__content_form_exit:hover {
+    color: whitesmoke;
+}
+
+#corpus_window__content_form_exit {
+    margin-left: 2px;
     margin-right: 2px;
+    align-self: center;
 }
 
-.corpus_window__content_form_buttons{
-    width: 100%;
-    display:flex;
-    justify-content: space-between;
-    align-self: self-end;
-}
-
-.content_window__content_form_inputs{
-    margin-top:20px;
-    margin-left:2px;
-    margin-right: 2px;
-}
-
-.corpus_window__content_form_actions{
-    width: 100%;
-    display:flex;
+.corpus_window__content_form_actions {
+    display: flex;
+    background-color: grey;
     flex-direction: column;
-    justify-content: space-between;
+    height: 100%;
+    justify-content: center;
+    min-width: 400px;
 }
 
-#corpus_window__content_form_input{
-    width: 100%;
+#corpus_window__content_form_submit {
+    width: 90%;
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#corpus_window__content_form_input {
+    width: 90%;
     background-position: 10px 10px;
     background-repeat: no-repeat;
     font-size: 16px;
-    padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
+    align-self: center;
+    margin-top: 30px;
+
 }
 
 /* CSS */
 .button-10 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 6px 14px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
-  border-radius: 6px;
-  border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
 
-  color: #fff;
-  background: #172b4d;
-   background-origin: border-box;
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+    color: #fff;
+    background: #135fec;
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .button-10:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
 }

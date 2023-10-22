@@ -1,17 +1,20 @@
 /* The side navigation menu */
 .panel_navigation {
-    float: left;
-    width: 150px;
-    height: 88vh;
-    display: flex;
-    flex-direction: column;
     border-right: 2px solid #5C6A82;
+    background-color: whitesmoke;
+    width: 150px;
+    display: flex;
+    flex:1;
+    position:fixed;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds the viewport height */
 }
 
 .panel_navigation a {
     padding: 8px 8px 8px 8px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: #172b4d;
     display: block;
     transition: 0.3s;
@@ -45,4 +48,37 @@
 .panel_navigation__component_exit{
     display:flex;
     justify-content: end;
+}
+
+#panel_navigation__exit:hover {
+  color: #5C6A82;
+}
+
+#panel_navigation__component_open {
+  margin-left:2px;
+}
+
+#panel_navigation__component_open:hover {
+  color: #5C6A82;
+}
+
+.panel_navigation .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+
+}
+.openbtn:hover {
+  background-color: #444;
 }

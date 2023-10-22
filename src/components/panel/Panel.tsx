@@ -1,4 +1,3 @@
-import React from 'react'
 import NavigationSide from './NavigationSide'
 
 const Panel = () => {
