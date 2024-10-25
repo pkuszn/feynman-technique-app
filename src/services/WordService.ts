@@ -1,6 +1,6 @@
 import { HttpUtils } from "../utils/HttpUtils";
 import config from "../appsettings.json";
-import { BackendApi } from "../constants/Api";
+import { BackendApi } from "../constants/api";
 import { Word } from "../models/Word";
 
 type BodyRequest = {

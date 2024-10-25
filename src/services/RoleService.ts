@@ -1,5 +1,5 @@
 import config from "../appsettings.json";
-import { BackendApi } from "../constants/Api";
+import { BackendApi } from "../constants/api";
 import { Role } from "../models/Role";
 import { HttpUtils } from "../utils/HttpUtils";
 
